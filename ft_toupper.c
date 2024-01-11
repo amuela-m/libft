@@ -4,7 +4,8 @@ DESCRIPCIÓN
        dentro de una cierta clase de caracteres de acuerdo con la localización en curso.
 
 toupper()
-        Convierte la letra minúscula a mayúscula, si es posible. 
+        Convierte la letra minúscula a mayúscula, si es posible.
+        Es decir, convierte un caracter dado a su equivalente en mayúsculas.
 
 
 
@@ -24,5 +25,17 @@ FALLOS
 
 int ft_toupper(int i)
 {
-    while (
+    if (i >= 65 && i <= 90)
+        return (i);
+    else
+        return (i -32); 
+}
+
+int main(void)
+{
+    int i;
+    
+    i = 'u';
+    printf("%c", ft_toupper(i));
+    return (0);
 }
