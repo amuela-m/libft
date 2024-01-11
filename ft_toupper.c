@@ -19,3 +19,10 @@ FALLOS
        En algunas localizaciones no inglesas existen letras minúsculas que no tienen su corre‐
        spondiente letra mayúscula; por ejemplo la s aguda alemana.
 */
+
+#include <stdio.h>
+
+int ft_toupper(int i)
+{
+    while (
+}
