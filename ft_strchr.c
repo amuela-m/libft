@@ -12,7 +12,29 @@ VALORES DE RETORNO
 
 #include <stdio.h>
 
-char *ft_strchr(const char *s, int i)
+char *ft_strchr(const char *s, int c)
 {
+     int  i;
+     char c1; 
 
+     i = 0;
+     c1 = (char) c;
+     while (s[i] != '\0') 
+     {
+          if (s[i] == c)
+               return ((char *) &s[i]);
+          i++;
+     }
+     return (NULL);
+}
+
+int  main(void)
+{
+     const     char *s;
+     char  c; 
+     
+     s = "pablo";
+     c = 'b';
+     printf("%s\n", ft_strchr(s, c));
+     return (0);
 }
