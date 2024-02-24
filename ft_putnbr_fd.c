@@ -1,16 +1,16 @@
 #include <string.h>
 #include <unistd.h>
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }
 
 void ft_putnbr_fd(int nb, int fd) 
 {
 	if (nb < 0)
 	{
-        ft_putchar_fd('-', fd);
+		ft_putchar_fd('-', fd);
 		nb = -nb;
 	}
 	if (nb >= 10)
@@ -24,5 +24,5 @@ void ft_putnbr_fd(int nb, int fd)
 
 int main(void)
 {
-    ft_putnbr_fd(-52, 1);
+	ft_putnbr_fd(-52, 1);
 }

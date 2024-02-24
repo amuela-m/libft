@@ -1,37 +1,21 @@
-/* 
-	DESCRIPCIÓN
-	   Estas funciones comprueban si c, que debe tener el valor de un unsigned char o EOF, cae
-	   dentro de una cierta clase de caracteres de acuerdo con la localización en curso.
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anamuelamercader <anamuelamercader@stud    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/23 19:29:22 by anamuelamer       #+#    #+#             */
+/*   Updated: 2024/02/24 19:12:25 by anamuelamer      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	isalpha()
-		Comprueba si el carácter es alfabético; en la localización estándar "C", es equiva‐
-		lente a (isupper(c) || islower(c)).  En algunas localizaciones, pueden existir car‐
-		acteres adicionales para los que isalpha() sea verdad: letras que no sean ni
-		mayúculas ni minúsculas.
+#include "libft.h"
 
-	VALOR DEVUELTO
-	   Los valores devueltos son no-cero si el carácter c cae dentro de la clase pedida, y cero
-	   si no.
-
-	NOTA
-	   Los detalles de qué caracteres pertenecen a qué clase dependen de la localización en
-	   curso. Por ejemplo, isupper() no reconocerá una Å (`a' mayúscula con círculo encima) como
-	   una letra mayúscula en la localización predeterminada C.
-*/
-
-#include <stdio.h>
-
-int ft_isalpha(char c)
+int	ft_isalpha(char c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
 	else
 		return (0);
-}
-
-int main(void)
-{
-	char c = 'B';
-	printf("%d", ft_isalpha(c));
-	return (0);
 }
