@@ -1,31 +1,78 @@
-#include <stdio.h> // Para sprintf y snprintf
-#include <stdlib.h> // Para malloc
+#include "libft.h"
 
-/*
-Toma un número entero y lo convierte en una cadena de caracteres. 
-La función snprintf se utiliza para calcular cuántos dígitos serán necesarios para representar el número. 
-Luego, se asigna memoria para la cadena resultante y se utiliza sprintf para realizar la conversión del número a una cadena.
-Por ejemplo, si llamamos itoa(123) nos devolverá la cadena "123".
-Es como si tuvieras un número y quisieras escribirlo como una cadena. 
-La función itoa te permite hacer exactamente eso, 
-convirtiendo el número en una secuencia de caracteres que puedes usar en una cadena de texto.
-*/
-
-char *itoa(int num) 
+int	ft_getsize(int n)
 {
-	// Calculamos el tamaño máximo de la cadena necesaria para representar el número
-	// Incluyendo espacio adicional para el signo y el carácter nulo
-	int	digits = snprintf(NULL, 0, "%d", num); //!!! Revisa este codigo que no puedes usar esta funcion!
+	int	value;
 
-	// Asignamos memoria para la nueva cadena
-	char *str = (char *)malloc((digits + 1) * sizeof(char));
-	if (str == NULL) 
+	value = 0;
+	if (n == -2147483648)
+		return (11);
+	if (n < 0)
 	{
-		return NULL; // Si malloc falla, retornamos NULL
+		n = -n;
+		value = value + 1;
 	}
-	
-	// Convertimos el número a una cadena
-	sprintf(str, "%d", num);
-	
-	return str; // Retornamos la nueva cadena
+	while (n >= 10)
+	{
+		n = n / 10;
+		value = value + 1;
+	}
+	if (n < 10)
+		value = value + 1;
+	return (value);
 }
+
+int	ft_elevate(int n)
+{
+	int value;
+
+	value = 1;
+	while (n > 0)
+	{
+		value = value * 10;
+		n--;
+	}
+	return (value);
+}
+
+char *ft_itoa(int n) 
+{
+	char	*result;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_getsize(n);
+	result = ft_calloc((len + 1), sizeof(char));
+	if (!result)
+		return (NULL);
+	if (n == -2147483648)
+		return (ft_memcpy(result, "-2147483648\0", 12));
+	if (n < 0)
+	{
+		n = -n;
+		result[i] = '-';
+		i++;
+	}
+	while (i < len)
+	{
+		result[i] = (n / ft_elevate(len - i - 1)) + '0';
+		n = n % ft_elevate(len - i - 1);
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+// int main() {
+//     int num = 2147483647;
+//     char *str = ft_itoa(num);
+// 	printf("Número: %d\nCadena: %s\n", num, str);
+
+//     return 0;
+// }
+
+// int	main()
+// {
+// 	printf("%d", ft_getsize(-2147483648));
+// }

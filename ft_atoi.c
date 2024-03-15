@@ -1,56 +1,55 @@
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
-/*
-Se utiliza para convertir una cadena de caracteres que representa un número en su valor entero equivalente.
-Toma una cadena que representa un número y devuelve su valor entero equivalente. Esta función maneja correctamente los signos (+ y -) 
-y los espacios en blanco antes del número, y omite cualquier otro carácter que no sea un dígito.
-
-Pasos: 
-1. Inicia una variable result que almacenará el valor entero equivalente de la cadena.
-2. Inicia una variable sign que almacenará el signo del número (1 para +; -1 para -).
-3. Inicia un índice i (contador) para recorrer la cadena str.
-4. Ignora los espacios iniciales y otros caracteres de espacio en blanco, tabulaciones, etc...
-5. Determina el signo del número: 
-- Si encuentra un signo -: establece sign en -1 y avanza al siguiente caracter.
-- Si encuentra un signo +: avanza al siguiente caracter.
-6. Convierte los dígitos de la cadena de valor entero equivalente, multiplicando el valor actual
-de result por 10 y sumando el valor del dígito actual.
-7. Avanza al siguiente caracter de la cadena y repite el proceso hasta que se encuentre un caracter que no sea un dígito.
-8. Aplica el signo al resultado y lo devuelve.
-*/
 
 int	ft_atoi(const char *str)
 {
-	int	result;
+	int	result; //resultado (numero convertido de string a int)
+	int	i;		//indice de iteracion
 	int	sign;
-	int	i;
 
 	result = 0;
-	sign = 1;
 	i = 0;
-	while (str[result] == ' ' || str[result] == '\n' || str[result] == '\t'
-		|| str[result] == '\v' || str[result] == '\f' || str[result] == '\r')
-		result++;
-	if (str[result] == '-' || str[result] == '+')
+	sign = 1;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[result] == '-')
+		if (str[i] == '-')
 			sign = -1;
-		result++;
+		i++;
 	}
-	while (str[result] >= '0' && str[result] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		i = (i * 10) + (str[result] - '0');
-		result++;
+		result = (result * 10) + (str[i] - '0'); 
+		i++;
 	}
-	return (i * sign);
+	return (result * sign);
 }
 
-int main(void)
-{
-	const char	*str;
+// int main(void)
+// {
+// 	char	str[] = "    		--12345";
+// 	printf("%d\n", ft_atoi(str));
+// 	return (0);
+// }
 
-	str = " -12345";
-	printf("%d\n", ft_atoi(str));
-	return (0);
-}
+// int main()
+// {
+// 	printf("1, %d = %d\n", ft_atoi("0"), atoi("0"));
+// 	printf("2, %d = %d\n", ft_atoi("42"), atoi("42"));
+// 	printf("3, %d = %d\n", ft_atoi("4 2"), atoi("4 2"));
+// 	printf("4, %d = %d\n", ft_atoi("-42"), atoi("-42"));
+// 	printf("5, %d = %d\n", ft_atoi("--42"), atoi("--42"));
+// 	printf("6, %d = %d\n", ft_atoi("+42"), atoi("+42"));//
+// 	printf("7, %d = %d\n", ft_atoi("++42"), atoi("++42"));
+// 	printf("8, %d = %d\n", ft_atoi("42hola"), atoi("42hola"));
+// 	printf("9, %d = %d\n", ft_atoi("4hola2"), atoi("4hola2"));
+// 	printf("10, %d = %d\n", ft_atoi("hola42"), atoi("hola42"));
+
+// 	printf("%d = 42\n", ft_atoi("42"));
+// 	printf("%d = -42\n", ft_atoi("-42"));
+// 	printf("%d = 0\n", ft_atoi("--42"));
+// 	printf("%d = 42\n", ft_atoi("+42"));//
+// 	printf("%d = 0\n", ft_atoi("++42"));
+// }

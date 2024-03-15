@@ -1,39 +1,39 @@
-#include <stddef.h> // Para NULL
-#include <string.h> // Para strlen
+#include "libft.h"
 
-/*
-Imagina que tienes dos cuadernos llenos de dibujos y quieres encontrar un dibujo específico en uno de ellos, 
-pero solo quieres buscar en los primeros dibujos del cuaderno.
-La función strnstr hace eso. Le dices a strnstr qué dibujo estás buscando y cuántos dibujos quieres revisar. 
-Entonces, strnstr busca en los primeros dibujos del cuaderno y te dice si encuentra el dibujo que estás buscando.
-Es como si le pidieras a alguien que buscara un dibujo específico en los primeros dibujos que ve en tu cuaderno de dibujos. 
-Si lo encuentra, te lo dice. Si no, te dice que no lo encontró.
-Entonces, strnstr te ayuda a buscar una cadena de dibujos dentro de otra cadena de dibujos, 
-pero solo en los primeros n dibujos de esa cadena. ¡Es muy útil cuando solo quieres buscar en una parte de una cadena!
-*/
-
-char *strnstr(const char *haystack, const char *needle, size_t len) 
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    size_t needle_len = strlen(needle); // Obtenemos la longitud de la subcadena a buscar
-    
-    // Si la subcadena a buscar está vacía, retornamos el puntero al principio de la cadena principal
-    if (*needle == '\0') 
-    {
-        return (char *)haystack;
-    }
-    
-    // Recorremos la cadena principal mientras haya suficiente longitud para buscar la subcadena
-    while (*haystack != '\0' && len >= needle_len) 
-    {
-        // Si encontramos la subcadena en la posición actual, retornamos un puntero a esa posición
-        if (strncmp(haystack, needle, needle_len) == 0) 
-        {
-            return (char *)haystack;
-        }
-        haystack++; // Movemos el puntero al siguiente carácter
-        len--; // Disminuimos la cantidad de caracteres restantes
-    }
-    
-    // Si no encontramos la subcadena dentro de los primeros 'len' caracteres, retornamos NULL
-    return NULL;
+	size_t	b;
+	size_t	l;
+
+	b = 0;
+	l = 0;
+	if (big == NULL && little == NULL)
+		return (NULL);
+	if (ft_strlen(little) == 0)
+		return ((char *)big);
+	while (big[b] != '\0' && b < len)
+	{
+		while (little[l] == big[b + l] && little[l] != '\0' && b + l < len)
+			l++;
+		if (little[l] == '\0')
+			return ((char *)big + b);
+		b++;
+		l = 0;
+	}
+	return (NULL);
 }
+
+// int main()
+// {
+// 	printf("%s\n", strnstr("ACABA", "ACA", 3));
+// }
+
+// ACABA	4
+//   ^^^^
+// ABA\
+//    ^
+
+// ACAB A
+//   ^^ ^
+// ABA
+//   ^

@@ -1,51 +1,51 @@
-#include <stdlib.h> // Para malloc y free
-#include <ctype.h> // Para isspace
+#include "libft.h"
 
-/*
-Esta función strtrim elimina los espacios en blanco al principio y al final de una cadena de caracteres. 
-Devuelve una nueva cadena de caracteres que contiene la versión recortada de la cadena de entrada.
-Por ejemplo, si tenemos la cadena " Hola mundo ", después de aplicar strtrim, obtendríamos la cadena "Hola mundo".
-Es como si tuvieras una caja de juguetes y quisieras quitar todas las almohadas 
-y mantas extra que están alrededor de tus juguetes. 
-¡La función strtrim hace lo mismo pero con los espacios en blanco en una cadena de texto!
+//Comparas uno a uno el set con la str: si coincide, no lo escribes y saltas al siguiente
+//y si NO coincide, lo escribe y pasa al siguiente. 
+
+/**
+ * Recibe un caracter y un array de caracteres
+ * Devuelve 1 si lo contiene, 0 si no
 */
-
-char *strtrim(const char *str) 
+static int	char_in_set(char c, char const *set)
 {
-    if (str == NULL) 
-    {
-        return NULL; // Si la cadena de entrada es NULL, retornamos NULL
-    }
-    
-    size_t len = strlen(str);
-    size_t start = 0;
-    size_t end = len - 1;
-    
-    // Buscamos el índice del primer carácter que no sea un espacio en blanco
-    while (isspace(str[start])) 
-    {
-        start++;
-    }
-    
-    // Buscamos el índice del último carácter que no sea un espacio en blanco
-    while (end > start && isspace(str[end])) 
-    {
-        end--;
-    }
-    
-    // Calculamos la longitud de la nueva cadena sin los espacios en blanco al principio y al final
-    size_t new_len = end - start + 1;
-    
-    // Asignamos memoria para la nueva cadena, más 1 byte adicional para el carácter nulo
-    char *trimmed_str = (char *)malloc((new_len + 1) * sizeof(char));
-    if (trimmed_str == NULL) 
-    {
-        return NULL; // Si malloc falla, retornamos NULL
-    }
-    
-    // Copiamos la parte no espaciada de la cadena original a la nueva cadena
-    strncpy(trimmed_str, str + start, new_len);
-    trimmed_str[new_len] = '\0'; // Aseguramos que la nueva cadena esté terminada con el carácter nulo
-    
-    return trimmed_str; // Retornamos la nueva cadena sin los espacios en blanco al principio y al final
+	int j;
+
+	j = 0;
+	while (set[j] != '\0')
+	{
+		if (c == set[j])
+			return (1);
+		j++;
+	}
+	return (0);
 }
+
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int	start;
+	int	end;
+
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (s1[start] != '\0')
+	{
+		if (!char_in_set(s1[start], set))
+			break;
+		start++;
+	}
+	while (end >= 0)
+	{
+		if (!char_in_set(s1[end], set))
+			break;
+		end--;
+	}
+	return (ft_substr(s1, start, end - start + 1));
+}
+
+// int main()
+// {
+// 	printf("%s\n", ft_strtrim("*_a-n-a*_", "*_-"));
+// 	printf("a-n-a\n");
+// }

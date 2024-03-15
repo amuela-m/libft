@@ -1,14 +1,9 @@
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	srcsize;
 	size_t	i;
 
-	if (!dst || !src)
-		return (0);
-	srcsize = strlen(src);
 	i = 0;
 	if (dstsize != 0)
 	{
@@ -19,21 +14,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		}
 		dst[i] = '\0';
 	}
-	return (srcsize);
+	return (ft_strlen(src));
 }
 
-int	main()
-{
-	char test1[30];
-	char test2[2];
-	char test3[0];
+// int	main(void)
+// {
+// 	char test1[30];
 
-	ft_strlcpy(test1, "hola que tal", 13);
-	printf("%s\n", test1);
-
-	ft_strlcpy(test2, "hola que tal", 13);
-	printf("%s\n", test2);
-
-	ft_strlcpy(test3, "hola que tal", 0);
-	printf("%s\n", test3);
-}
+// 	ft_strlcpy(test1, "hola que tal", 13);
+// 	printf("%s\n", test1);
+// }

@@ -1,71 +1,109 @@
-#include <stdlib.h> // Para malloc y free
-#include <string.h> // Para strlen y strchr
+#include "libft.h"
 
 /*
-Divide una cadena en partes iguales. 
-Esta función split toma una cadena de caracteres str, un carácter delimitador delimiter 
-y un puntero a un tamaño num_tokens, que se utilizará para almacenar el número de partes en las que se ha dividido la cadena. 
-Retorna un array de punteros a cadenas que representan las partes de la cadena dividida.
-Por ejemplo, si tenemos la cadena "Hola,mundo,amigo" y usamos la función split con el delimitador ',', 
-obtendremos un array con tres elementos: "Hola", "mundo" y "amigo".
-Es como si tuvieras una frase larga y quisieras dividirla en palabras más pequeñas basadas en espacios entre ellas. 
-La función split te permite hacer eso, dividiendo una cadena en partes más pequeñas usando un delimitador específico.
+1º - Funcion que me retorna el número de palabras:
+ * Cuenta la cantidad de palabras en el string s separadas por el caracter c
+ * Devuelve la cuenta
+*/
+static int	count_words(const char *s, char c)
+{
+	int	count;
+	size_t	i;
+
+	count = 1;
+	i = 0;
+	if (s[0] == c || s[0] == '\0')
+		count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+/*
+Función que te devuelve la copia de la palabra hasta el delimitador.
+*/
+static char	*store_word(const char *s, char c)
+{
+	size_t	i; //contador
+	size_t	size; //tamaño de la palabra
+	char	*result;
+
+	size = 0;
+	i = 0;
+	while (s[size] != '\0' && s[size] != c) //aumenta i hasta que encuentra c (espacio).
+		size++;
+	result = ft_calloc(size + 1, sizeof(char));
+	if (!result)
+		return (NULL);
+	while (i < size)
+	{
+		result[i] = s[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+
+static void	ft_free(char **result, int words)
+{
+	int	i;
+
+	i = 0;
+	while (i < words)
+	{
+		free(result[i]); //libera el contenido
+		i++;
+	}
+	free(result); //libera todo el contenedor
+	result = NULL;
+}
+
+/*
+2º - Hacer un malloc con el número de count que hemos sacado de la función anterior. 
+Este número indica el número de strings que vamos a tener + 1 (que es el NULL) en nuestra lista. 
 */
 
-char **split(const char *str, char delimiter, size_t *num_tokens) 
+char	**ft_split(const char *s, char c)
 {
-    size_t str_length = strlen(str);
-    size_t num_delimiters = 0;
+	char **result;
+	int	words;
+	int	i;
 
-    // Contamos el número de delimitadores en la cadena
-    for (size_t i = 0; i < str_length; ++i) 
-    {
-        if (str[i] == delimiter) 
-        {
-            num_delimiters++;
-        }
-    }
-
-    // Calculamos el número de tokens (partes) que tendrá la cadena dividida
-    *num_tokens = num_delimiters + 1;
-
-    // Asignamos memoria para el array de punteros a cadenas
-    char **tokens = (char **)malloc((*num_tokens) * sizeof(char *));
-    if (tokens == NULL) {
-        return NULL; // Si malloc falla, retornamos NULL
-    }
-
-    size_t token_index = 0;
-    size_t token_start = 0;
-
-    // Recorremos la cadena para encontrar los delimitadores y dividirla en tokens
-    for (size_t i = 0; i <= str_length; ++i) 
-    {
-        if (str[i] == delimiter || str[i] == '\0') 
-        {
-            // Calculamos la longitud del token actual
-            size_t token_length = i - token_start;
-
-            // Asignamos memoria para el token actual y copiamos los caracteres
-            tokens[token_index] = (char *)malloc((token_length + 1) * sizeof(char));
-            if (tokens[token_index] == NULL) 
-            {
-                // Si malloc falla, liberamos la memoria asignada previamente y retornamos NULL
-                for (size_t j = 0; j < token_index; ++j) 
-                {
-                    free(tokens[j]);
-                }
-                free(tokens);
-                return NULL;
-            }
-            strncpy(tokens[token_index], str + token_start, token_length);
-            tokens[token_index][token_length] = '\0';
-
-            // Movemos el índice de inicio del próximo token
-            token_start = i + 1;
-            token_index++;
-        }
-    }
-
-    return tokens;
+	if (!s)
+		return (NULL);
+	i = 0;
+	words = count_words(s, c);
+	result = ft_calloc((words + 1), sizeof(char*));
+	if (result == NULL)
+		return (NULL);
+	while (i < words)
+	{
+		while (*s == c)
+			s++;
+		result[i] = store_word(s, c);
+		if (!result[i])
+			return (ft_free(result, words), NULL);
+		s = ft_strchr(s, c);
+		i++;
+	}
+	return (result);
 }
+
+// int main()
+// {
+// 	char **strs = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+// 	int i = 0;
+// 	while (strs[i] != NULL)
+// 	{
+// 		printf("|%s|\n", strs[i]);
+// 		i ++;
+// 	}
+
+// 	// char **strs = ft_split("         hola", ' ');
+// 	// printf("%s\n", strs[0]);
+// 	// printf("%d\n", count_words("         hola", ' '));
+// }
