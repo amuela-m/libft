@@ -1,10 +1,21 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:37:15 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:38:38 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
-	int	result; //resultado (numero convertido de string a int)
-	int	i;		//indice de iteracion
+	int	result;
+	int	i;
 	int	sign;
 
 	result = 0;
@@ -21,7 +32,7 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = (result * 10) + (str[i] - '0'); 
+		result = (result * 10) + (str[i] - '0');
 		i++;
 	}
 	return (result * sign);

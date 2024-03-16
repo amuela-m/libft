@@ -1,13 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:52:10 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:59:05 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-/*
-1º - Funcion que me retorna el número de palabras:
- * Cuenta la cantidad de palabras en el string s separadas por el caracter c
- * Devuelve la cuenta
-*/
 static int	count_words(const char *s, char c)
 {
-	int	count;
+	int		count;
 	size_t	i;
 
 	count = 1;
@@ -23,18 +30,15 @@ static int	count_words(const char *s, char c)
 	return (count);
 }
 
-/*
-Función que te devuelve la copia de la palabra hasta el delimitador.
-*/
 static char	*store_word(const char *s, char c)
 {
-	size_t	i; //contador
-	size_t	size; //tamaño de la palabra
+	size_t	i;
+	size_t	size;
 	char	*result;
 
 	size = 0;
 	i = 0;
-	while (s[size] != '\0' && s[size] != c) //aumenta i hasta que encuentra c (espacio).
+	while (s[size] != '\0' && s[size] != c)
 		size++;
 	result = ft_calloc(size + 1, sizeof(char));
 	if (!result)
@@ -55,29 +59,24 @@ static void	ft_free(char **result, int words)
 	i = 0;
 	while (i < words)
 	{
-		free(result[i]); //libera el contenido
+		free(result[i]);
 		i++;
 	}
-	free(result); //libera todo el contenedor
+	free(result);
 	result = NULL;
 }
 
-/*
-2º - Hacer un malloc con el número de count que hemos sacado de la función anterior. 
-Este número indica el número de strings que vamos a tener + 1 (que es el NULL) en nuestra lista. 
-*/
-
 char	**ft_split(const char *s, char c)
 {
-	char **result;
-	int	words;
-	int	i;
+	char	**result;
+	int		words;
+	int		i;
 
 	if (!s)
 		return (NULL);
 	i = 0;
 	words = count_words(s, c);
-	result = ft_calloc((words + 1), sizeof(char*));
+	result = ft_calloc((words + 1), sizeof(char *));
 	if (result == NULL)
 		return (NULL);
 	while (i < words)
@@ -92,18 +91,3 @@ char	**ft_split(const char *s, char c)
 	}
 	return (result);
 }
-
-// int main()
-// {
-// 	char **strs = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-// 	int i = 0;
-// 	while (strs[i] != NULL)
-// 	{
-// 		printf("|%s|\n", strs[i]);
-// 		i ++;
-// 	}
-
-// 	// char **strs = ft_split("         hola", ' ');
-// 	// printf("%s\n", strs[0]);
-// 	// printf("%d\n", count_words("         hola", ' '));
-// }

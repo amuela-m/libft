@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:53:37 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 21:01:59 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_strjoin(char const *str1, char const *str2)
+char	*ft_strjoin(char const *str1, char const *str2)
 {
 	char	*newstr;
 	size_t	i;
@@ -21,16 +33,7 @@ char *ft_strjoin(char const *str1, char const *str2)
 	}
 	j = 0;
 	while (str2[j] != '\0')
-	{
-		newstr[i] = str2[j];
-		j++;
-		i++;
-	}
+		newstr[i++] = str2[j++];
 	newstr[i] = '\0';
 	return (newstr);
 }
-
-// int	main()
-// {
-// 	printf("%s\n", ft_strjoin("abcde", "fghij"));
-// }

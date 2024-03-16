@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:54:52 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:59:51 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-/**
- * Itera por cada una de las letras de la palabra y ejecuta la funcion 'f'
- * almacenando el resultado en una nueva string.
-*/
 char	*ft_strmapi(const char *str, char (*f)(unsigned int, char))
 {
 	size_t	i;
@@ -23,23 +31,3 @@ char	*ft_strmapi(const char *str, char (*f)(unsigned int, char))
 	result[i] = '\0';
 	return (result);
 }
-
-// char	func(unsigned int index, char c)
-// {
-// 	(void)index;
-// 	return (ft_tolower(c));
-// }
-
-// char	func2(unsigned int index, char c)
-// {
-// 	(void)index;
-// 	return (ft_toupper(c));
-// }
-
-// int main()
-// {
-// 	char str[] = "HOLA que TAL";
-
-// 	printf("%s\n", ft_strmapi(str, func));
-// 	printf("%s\n", ft_strmapi(str, func2));
-// }

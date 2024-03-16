@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:42:07 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:43:58 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_getsize(int n)
+static int	ft_getsize(int n)
 {
 	int	value;
 
@@ -22,9 +34,9 @@ int	ft_getsize(int n)
 	return (value);
 }
 
-int	ft_elevate(int n)
+static int	ft_elevate(int n)
 {
-	int value;
+	int	value;
 
 	value = 1;
 	while (n > 0)
@@ -35,7 +47,7 @@ int	ft_elevate(int n)
 	return (value);
 }
 
-char *ft_itoa(int n) 
+char	*ft_itoa(int n)
 {
 	char	*result;
 	int		len;

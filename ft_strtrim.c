@@ -1,15 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:55:45 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 21:00:55 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-//Comparas uno a uno el set con la str: si coincide, no lo escribes y saltas al siguiente
-//y si NO coincide, lo escribe y pasa al siguiente. 
-
-/**
- * Recibe un caracter y un array de caracteres
- * Devuelve 1 si lo contiene, 0 si no
-*/
 static int	char_in_set(char c, char const *set)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (set[j] != '\0')
@@ -21,7 +26,6 @@ static int	char_in_set(char c, char const *set)
 	return (0);
 }
 
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int	start;
@@ -32,20 +36,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[start] != '\0')
 	{
 		if (!char_in_set(s1[start], set))
-			break;
+			break ;
 		start++;
 	}
 	while (end >= 0)
 	{
 		if (!char_in_set(s1[end], set))
-			break;
+			break ;
 		end--;
 	}
 	return (ft_substr(s1, start, end - start + 1));
 }
-
-// int main()
-// {
-// 	printf("%s\n", ft_strtrim("*_a-n-a*_", "*_-"));
-// 	printf("a-n-a\n");
-// }

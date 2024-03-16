@@ -3,7 +3,6 @@ CFLAGS	= -Wall -Wextra -Werror
 
 
 LIB1	= ar -rcs
-LIB2	= ranlib
 RM		= /bin/rm -f
 
 
@@ -51,7 +50,6 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS) $(INCLUDE)
 			$(LIB1) $(NAME) $(OBJS)
-			$(LIB2) $(NAME)
 
 .c.o:
 			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)

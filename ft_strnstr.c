@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:55:19 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:55:22 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
@@ -22,18 +34,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// int main()
-// {
-// 	printf("%s\n", strnstr("ACABA", "ACA", 3));
-// }
-
-// ACABA	4
-//   ^^^^
-// ABA\
-//    ^
-
-// ACAB A
-//   ^^ ^
-// ABA
-//   ^

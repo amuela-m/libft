@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amuela-m <amuela-m@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:54:36 by amuela-m          #+#    #+#             */
+/*   Updated: 2024/03/15 20:59:44 by amuela-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -16,11 +28,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (ft_strlen(src));
 }
-
-// int	main(void)
-// {
-// 	char test1[30];
-
-// 	ft_strlcpy(test1, "hola que tal", 13);
-// 	printf("%s\n", test1);
-// }
