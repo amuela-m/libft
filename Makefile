@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amuela-m <amuela-m@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/18 17:56:13 by amuela-m          #+#    #+#              #
+#    Updated: 2024/05/18 17:56:15 by amuela-m         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 CFLAGS	= -Wall -Wextra -Werror
 
@@ -8,7 +20,7 @@ RM		= /bin/rm -f
 
 NAME	= libft.a
 
-INCLUDE	= libft.h
+INCLUDE	= .
 SRCS	= ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
