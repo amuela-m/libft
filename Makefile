@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amuela-m <amuela-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/18 17:56:13 by amuela-m          #+#    #+#              #
-#    Updated: 2024/05/18 17:56:15 by amuela-m         ###   ########.fr        #
+#    Created: 2024/05/19 14:03:14 by amuela-m          #+#    #+#              #
+#    Updated: 2024/05/19 14:03:32 by amuela-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,3 +73,5 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
+
+.PHONY: all clean fclean re

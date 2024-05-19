@@ -6,7 +6,7 @@
 /*   By: amuela-m <amuela-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 17:54:54 by amuela-m          #+#    #+#             */
-/*   Updated: 2024/05/18 17:54:56 by amuela-m         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:17:47 by amuela-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	c;
-	size_t	d;
+	size_t	s;
+	size_t	srclen;
+	size_t	destlen;
 
-	if (dstsize <= ft_strlen(dst))
-		return (dstsize + ft_strlen(src));
-	c = ft_strlen(dst);
-	d = 0;
-	while (src[d] != '\0' && c + 1 < dstsize)
+	srclen = ft_strlen(src);
+	if (dstsize == 0)
+		return (srclen);
+	if (ft_strlen(dst) > dstsize)
+		return (srclen + dstsize);
+	destlen = ft_strlen(dst);
+	if (dstsize < destlen)
+		srclen += dstsize;
+	else
+		srclen += destlen;
+	s = 0;
+	while (src[s] != '\0' && ((destlen + 1 + s) < dstsize))
 	{
-		dst[c] = src[d];
-		c++;
-		d++;
+		dst[destlen + s] = src[s];
+		s++;
 	}
-	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen(&src[d]));
+	dst[destlen + s] = '\0';
+	return (srclen);
 }
